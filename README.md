@@ -68,19 +68,20 @@ Oak Bank is an institutional-grade, modern banking dashboard designed for privat
 
 ### Prerequisites
 - Node.js (v18+)
-- npm or pnpm
+- pnpm (v9+ or v12+)
 
 ### Installation & Run
 ```bash
-# Install dependencies (already installed in workspace)
-npm install
+# Install dependencies
+pnpm install
 
 # Start local development server
-npm run dev
+pnpm run dev
 
 # Build for production
-npm run build
+pnpm run build
 
 # Preview production build
-npm run preview
+pnpm run preview
 ```
+

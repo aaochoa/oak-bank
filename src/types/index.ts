@@ -106,3 +106,4 @@ export interface NotificationItem {
   read: boolean;
   amount?: number;
 }
+

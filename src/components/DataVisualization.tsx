@@ -318,3 +318,4 @@ export const DataVisualization: React.FC = () => {
     </div>
   );
 };
+

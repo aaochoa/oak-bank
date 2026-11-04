@@ -150,3 +150,4 @@ export const AccountsCarousel: React.FC = () => {
     </div>
   );
 };
+

@@ -524,3 +524,4 @@ export const SPENDING_BY_CATEGORY: CategorySpending[] = [
   { category: 'Professional Services', amount: 3200, percentage: 9.3, budget: 4000, color: '#ec4899' },
   { category: 'Dining & Entertainment', amount: 1350, percentage: 3.9, budget: 2000, color: '#f43f5e' }
 ];
+
