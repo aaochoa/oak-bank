@@ -2,6 +2,7 @@
   "name": "oak-bank",
   "private": true,
   "version": "1.0.0",
+  "description": "Institutional-grade digital banking and wealth management dashboard",
   "type": "module",
   "packageManager": "pnpm@12.16.1",
   "scripts": {

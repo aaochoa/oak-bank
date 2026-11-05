@@ -1,5 +1,7 @@
 # Oak Bank — Modern Digital Banking & Wealth Management Dashboard
 
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new)
+
 Oak Bank is an institutional-grade, modern banking dashboard designed for private wealth and high-growth commercial entities. Built with React 19, TypeScript, Vite, Tailwind CSS, Recharts, and Lucide Icons, it demonstrates a clean, responsive, high-performance fintech UI with rich interactive features and realistic financial modeling.
 
 ---
