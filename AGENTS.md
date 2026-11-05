@@ -9,6 +9,7 @@
 **Oak Bank** is a modern, high-performance, responsive digital banking and wealth management dashboard designed for high-net-worth private clients and high-growth commercial entities.
 
 It delivers a clean, intuitive fintech experience (inspired by Mercury, Brex, Revolut, and Linear) complete with:
+
 - **Consolidated Net Worth & Multi-Vault Management** (Operating Checking, 5.18% APY Treasury, Investment Portfolio, Titanium Credit Card)
 - **Real-Time Settlement & Money Movement** (Internal account-to-account sweeps, FedNow 24/7 instant rails, and standard ACH)
 - **Comprehensive Transaction Ledger** (Multi-attribute filtering, live search, column sorting, interactive digital receipt modals, audit memos, accounting tags, and instant CSV/PDF export)
@@ -21,16 +22,16 @@ It delivers a clean, intuitive fintech experience (inspired by Mercury, Brex, Re
 
 ## 2. Technology Stack & Specifications
 
-| Component | Technology | Version / Details |
-|---|---|---|
-| **Runtime & Language** | TypeScript / Node.js | TypeScript `^5.7.3`, Node `v26+` |
-| **Package Manager** | `pnpm` | `v12.16.1` (Configured with `package-import-method=copy` in `.npmrc`) |
-| **Frontend Framework** | React | `^19.0.0` (with React DOM 19) |
-| **Build Tool & Bundler** | Vite | `^6.2.0` (with `@vitejs/plugin-react` and manual chunk optimization) |
-| **Styling & CSS** | Tailwind CSS | `^3.4.17` (Extended with custom `oak`, `forest`, and `slatebg` palettes) |
-| **Data Visualization** | Recharts | `^2.15.1` (AreaChart, PieChart, ResponsiveContainer) |
-| **Iconography** | Lucide React | `^1.16.0` |
-| **Typography** | Google Fonts | *Plus Jakarta Sans* (Sans) & *JetBrains Mono* (Code / Currency) |
+| Component                | Technology           | Version / Details                                                        |
+| ------------------------ | -------------------- | ------------------------------------------------------------------------ |
+| **Runtime & Language**   | TypeScript / Node.js | TypeScript `^5.7.3`, Node `v26+`                                         |
+| **Package Manager**      | `pnpm`               | `v12.16.1` (Configured with `package-import-method=copy` in `.npmrc`)    |
+| **Frontend Framework**   | React                | `^19.0.0` (with React DOM 19)                                            |
+| **Build Tool & Bundler** | Vite                 | `^6.2.0` (with `@vitejs/plugin-react` and manual chunk optimization)     |
+| **Styling & CSS**        | Tailwind CSS         | `^3.4.17` (Extended with custom `oak`, `forest`, and `slatebg` palettes) |
+| **Data Visualization**   | Recharts             | `^2.15.1` (AreaChart, PieChart, ResponsiveContainer)                     |
+| **Iconography**          | Lucide React         | `^1.16.0`                                                                |
+| **Typography**           | Google Fonts         | _Plus Jakarta Sans_ (Sans) & _JetBrains Mono_ (Code / Currency)          |
 
 ---
 
@@ -80,75 +81,83 @@ It delivers a clean, intuitive fintech experience (inspired by Mercury, Brex, Re
 ## 4. Core Domain Models (`src/types/index.ts`)
 
 ### `Account`
+
 Represents an individual vault or financial account:
+
 ```typescript
 interface Account {
   id: string;
   name: string;
-  type: 'checking' | 'savings' | 'treasury' | 'investment' | 'credit';
+  type: "checking" | "savings" | "treasury" | "investment" | "credit";
   accountNumber: string; // e.g. "•••• 8824"
   routingNumber: string; // e.g. "021000089"
   balance: number;
   availableBalance: number;
   currency: string;
-  apy?: number;          // e.g. 5.18 for Treasury
+  apy?: number; // e.g. 5.18 for Treasury
   monthlyYield?: number; // Accrued compound yield
-  status: 'active' | 'restricted' | 'locked';
+  status: "active" | "restricted" | "locked";
   color: string;
-  cardLimit?: number;    // Credit line limit
-  usedLimit?: number;    // Current credit utilized
+  cardLimit?: number; // Credit line limit
+  usedLimit?: number; // Current credit utilized
 }
 ```
 
 ### `Transaction`
+
 Represents an entry in the double-entry accounting ledger:
+
 ```typescript
 interface Transaction {
   id: string;
-  date: string;              // ISO-8601 string
+  date: string; // ISO-8601 string
   merchant: string;
   merchantLogo?: string;
   category: TransactionCategory;
-  type: 'inflow' | 'outflow' | 'transfer';
+  type: "inflow" | "outflow" | "transfer";
   amount: number;
   accountId: string;
   accountName: string;
-  status: 'completed' | 'pending' | 'flagged';
-  referenceNumber: string;   // e.g. "STR-99482104-US"
-  paymentMethod: string;     // e.g. "FedNow Instant Settlement"
-  notes?: string;            // User-editable audit memo
-  tags?: string[];           // User-editable accounting tags
+  status: "completed" | "pending" | "flagged";
+  referenceNumber: string; // e.g. "STR-99482104-US"
+  paymentMethod: string; // e.g. "FedNow Instant Settlement"
+  notes?: string; // User-editable audit memo
+  tags?: string[]; // User-editable accounting tags
   fee?: number;
   recipient?: string;
 }
 ```
 
 ### `BankCard`
+
 Represents physical titanium or virtual single-use cards:
+
 ```typescript
 interface BankCard {
   id: string;
   accountId: string;
   cardholderName: string;
-  cardNumber: string;        // Full masked representation
+  cardNumber: string; // Full masked representation
   last4: string;
   expiryMonth: string;
   expiryYear: string;
   cvv: string;
-  type: 'virtual' | 'physical';
-  tier: 'Oak Titanium' | 'Oak Black' | 'Corporate Emerald';
-  brand: 'Visa Infinite' | 'Mastercard World Elite';
-  status: 'active' | 'frozen';
+  type: "virtual" | "physical";
+  tier: "Oak Titanium" | "Oak Black" | "Corporate Emerald";
+  brand: "Visa Infinite" | "Mastercard World Elite";
+  status: "active" | "frozen";
   spendingLimit: number;
   currentSpent: number;
-  theme: 'emerald' | 'obsidian' | 'gold';
+  theme: "emerald" | "obsidian" | "gold";
   isContactless: boolean;
   isInternationalEnabled: boolean;
 }
 ```
 
 ### `UpcomingBill`
+
 Represents scheduled corporate obligations and SaaS subscriptions:
+
 ```typescript
 interface UpcomingBill {
   id: string;
@@ -156,10 +165,10 @@ interface UpcomingBill {
   category: TransactionCategory;
   amount: number;
   dueDate: string;
-  status: 'pending' | 'autopay' | 'paid';
+  status: "pending" | "autopay" | "paid";
   accountId: string;
   accountName: string;
-  recurringFrequency: 'Monthly' | 'Annual' | 'Quarterly';
+  recurringFrequency: "Monthly" | "Annual" | "Quarterly";
 }
 ```
 
@@ -170,6 +179,7 @@ interface UpcomingBill {
 The application state is centralized in `BankProvider` and accessed across components via the custom hook `useBank()`.
 
 ### Key State & Handlers Provided by `useBank()`:
+
 - **Accounts**:
   - `accounts`: Active array of accounts.
   - `selectedAccountId`: Active account filter (`'all'` or specific account ID).
@@ -221,7 +231,9 @@ pnpm run preview
 ```
 
 ### Build Optimization
+
 In `vite.config.ts`, `build.rollupOptions.output.manualChunks` splits the bundle into discrete chunks:
+
 - `vendor-react`: `react`, `react-dom`
 - `vendor-charts`: `recharts`
 - `vendor-icons`: `lucide-react`
